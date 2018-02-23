@@ -14,7 +14,7 @@ namespace Winums
 
         public ItemsViewModel()
         {
-            Title = "Browse";
+            Title = "Winums";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 

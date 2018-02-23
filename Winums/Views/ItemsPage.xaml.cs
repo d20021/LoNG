@@ -29,9 +29,13 @@ namespace Winums
             ItemsListView.SelectedItem = null;
         }
 
-        async void AddItem_Clicked(object sender, EventArgs e)
+        void Regenerate_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewItemPage());
+            //ItemsListView.BeginRefresh() ;
+            BindingContext = viewModel = new ItemsViewModel();
+            viewModel.LoadItemsCommand.Execute(null);
+            //ItemsListView.BeginRefresh();
+
         }
 
         protected override void OnAppearing()

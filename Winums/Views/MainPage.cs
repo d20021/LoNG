@@ -15,7 +15,7 @@ namespace Winums
                 case Device.iOS:
                     itemsPage = new NavigationPage(new ItemsPage())
                     {
-                        Title = "Browse"
+                        Title = "Your Numbers"
                     };
 
                     aboutPage = new NavigationPage(new AboutPage())
@@ -28,7 +28,7 @@ namespace Winums
                 default:
                     itemsPage = new ItemsPage()
                     {
-                        Title = "Browse"
+                        Title = "Your Numbers"
                     };
 
                     aboutPage = new AboutPage()

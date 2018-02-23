@@ -1,22 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Winums.ItemsPage" Title="{Binding Title}" x:Name="BrowseItemsPage">
 	<ContentPage.ToolbarItems>
-		<ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
+		<ToolbarItem Text="Redraw" Clicked="Regenerate_Clicked"/>
 	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
-		<StackLayout>
-			<ListView x:Name="ItemsListView" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" HasUnevenRows="true" RefreshCommand="{Binding LoadItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnItemSelected">
-				<ListView.ItemTemplate>
+		<RelativeLayout HeightRequest="60" VerticalOptions="CenterAndExpand" 
+            HorizontalOptions="FillAndExpand" >
+			<ListView x:Name="ItemsListView" Rotation="270" RowHeight="60" 
+                        ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" 
+                        HasUnevenRows="false" RefreshCommand="{Binding LoadItemsCommand}" 
+                        IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" 
+                        CachingStrategy="RecycleElement" ItemSelected="OnItemSelected" 
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-30}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=-0.5, Constant=30}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=Constant, Constant=60}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+                
+                <ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>
-							<StackLayout Padding="10">
-								<Label Text="{Binding Text}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-								<Label Text="{Binding Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                            <ContentView Rotation="90" Padding="1" TranslationX="60" BackgroundColor="Coral"></ContentView>
+							<StackLayout Padding="10" Rotation="90" Orientation="Horizontal">
+								<Label Text="{Binding Text}" LineBreakMode="NoWrap" 
+                                    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                                    Style="{DynamicResource ListItemTextStyle}" FontSize="16" 
+                                    TextColor="RoyalBlue"/>
 							</StackLayout>
 						</ViewCell>
 					</DataTemplate>
 				</ListView.ItemTemplate>
+
 			</ListView>
-		</StackLayout>
+            
+		</RelativeLayout>
+        
 	</ContentPage.Content>
+    
+    
 </ContentPage>
