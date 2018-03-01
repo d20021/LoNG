@@ -79,5 +79,15 @@ namespace Winums
 
             return response.IsSuccessStatusCode;
         }
+
+        public async Task<bool> DeleteAllItemsAsync()
+        {
+            foreach (var item in items)
+            {
+                await DeleteItemAsync(item.Id);
+            }
+
+            return await Task.FromResult(true);
+        }
     }
 }

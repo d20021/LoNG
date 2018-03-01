@@ -12,6 +12,11 @@ namespace Winums
 
         public MockDataStore()
         {
+            populateNums();
+        }
+
+        public void populateNums()
+        {
             items = new List<Item>();
             nums = RandomNumGen.GenDrawSequence();
             var mockItems = new List<Item>
@@ -50,6 +55,13 @@ namespace Winums
         {
             var _item = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
             items.Remove(_item);
+
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> DeleteAllItemsAsync()
+        {
+            items.Clear();
 
             return await Task.FromResult(true);
         }

@@ -29,13 +29,10 @@ namespace Winums
             ItemsListView.SelectedItem = null;
         }
 
-        void Regenerate_Clicked(object sender, EventArgs e)
+        async void Regenerate_Clicked(object sender, EventArgs e)
         {
-            //ItemsListView.BeginRefresh() ;
-            BindingContext = viewModel = new ItemsViewModel();
-            viewModel.LoadItemsCommand.Execute(null);
-            //ItemsListView.BeginRefresh();
-
+            (viewModel as BaseViewModel).resetData();
+            await viewModel.ExecuteLoadItemsCommand();
         }
 
         protected override void OnAppearing()

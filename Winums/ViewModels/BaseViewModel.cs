@@ -18,6 +18,12 @@ namespace Winums
             set { SetProperty(ref isBusy, value); }
         }
 
+        public void resetData()
+        {
+            DataStore.DeleteAllItemsAsync();
+            (DataStore as MockDataStore).populateNums();
+        }
+
         string title = string.Empty;
         public string Title
         {
